@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/solderneer/synthesia_app/issues"
   },
-  "homepage": "https://github.com/solderneer/synthesia_app#readme"
+  "homepage": "https://github.com/solderneer/synthesia_app#readme",
+  "dependencies": {
+    "electron": "1.8.4"
+  }
 }
