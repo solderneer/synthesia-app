@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/solderneer/synthesia_app#readme",
   "dependencies": {
-    "electron": "1.8.4"
-  }
+    "electron": "1.8.4",
+    "electron-reload": "1.2.2"
+  },
+  "devDependencies": {}
 }
