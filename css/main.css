@@ -1,7 +1,29 @@
 .vertical-center {
-    min-height: 100%;
     min-height: 100vh;
 
     display: flex;
     align-items: center;
+    /*background-image: url("../assets/back.jpg");
+    background-size: cover;
+    background: linear-gradient(to right, #ff00ff, #aa00d4);*/
+    background-color: #FAFAFA;
+    margin: 0px;
+}
+
+.row-margin {
+    margin-top: 20px;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20rem;
+    padding: 20px;
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

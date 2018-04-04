@@ -13,7 +13,7 @@ require('electron-reload')(__dirname);
 
 // Wait for app to be ready
 app.on('ready', function(){
-    MainWindow = new BrowserWindow({});
+    MainWindow = new BrowserWindow({resizable: false});
     // Load HTML file
     MainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),

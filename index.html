@@ -11,27 +11,49 @@
         <title>Synthesia</title>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-4">
-                    <img src="assets/synthesia_logo.svg" class="img-fluid" alt="Responsive logo"/>
-                </div>
-            </div>
+        <div class="jumbotron vertical-center">
+            <div class="container-fluid">
+                <div class="card mx-auto">
+                    <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <img src="assets/logo_blk.png" class="img-fluid" alt="Responsive logo"/>
+                        </div>
+                    </div>
 
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                        </select>
+                    <div class="row row-margin justify-content-center">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                        <option selected="selected" disabled>Port</option>
+                                        <option>/dev/ttyMFD1</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                        <option selected="selected" disabled>Baudrate</option>
+                                        <option>1200</option>
+                                        <option>2400</option>
+                                        <option>4800</option>
+                                        <option>9600</option>
+                                        <option>19200</option>
+                                        <option>38200</option>
+                                        <option>57600</option>
+                                        <option>115200</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-margin justify-content-center">
+                        <button type="button " class="btn btn-dark btn-lg btn-block">Connect</button>
                     </div>
                 </div>
-            </div
+                </div>
+            </div>
         </div>
 
         <!-- Optional JavaScript -->
