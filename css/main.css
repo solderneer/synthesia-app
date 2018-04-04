@@ -6,8 +6,9 @@
     /*background-image: url("../assets/back.jpg");
     background-size: cover;
     background: linear-gradient(to right, #ff00ff, #aa00d4);*/
-    background-color: #FAFAFA;
+    background-color: #424242;
     margin: 0px;
+    border-radius: 0px;
 }
 
 .row-margin {
