@@ -30,3 +30,15 @@
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
+.header-switch {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+
+.left-switch {
+    position: relative;
+    left: 250px;
+    bottom: 32px;
+}

@@ -8,7 +8,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/main.css" type="text/css">
-        <link rel="stylesheet" href="css/toggle.css" type="text/css">
+        <link rel="stylesheet" href="css/switch.css" type="text/css">
         <title>Synthesia</title>
     </head>
     <body>
@@ -71,21 +71,27 @@
                             <div class="card" style="padding: 0px;">
                                 <div class="card-header" style="padding-bottom: 3px">
                                     <h5>Voice Mode</h5>
-                                    <label class="switch">
-                                        <input type="checkbox" id="pitchen">
-                                        <span class="slider round"></span>
-                                    </label>
+                                    <div class="header-switch">
+                                        <input type="checkbox" id="voicemode-switch" />
+                                    </div>
                                 </div>
                                 <div class="card-body">
+                                    <h6>Pass-through Mode</h6>
+                                    <div class="left-switch">
+                                        <input type="checkbox" id="passthrough-switch" />
+                                    </div>
+                                    <h6>Delay Mode</h6>
+                                    <div class="left-switch">
+                                        <input type="checkbox" id="delay-switch" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="card" style="padding: 0px">
                                 <div class="card-header" style="padding-bottom: 3px">
                                     <h5>Instrument Mode</h5>
-                                    <label class="switch">
-                                        <input type="checkbox" id="insten"/>
-                                        <div class="slider round"></div>
-                                    </label>
+                                    <div class="header-switch">
+                                        <input type="checkbox" id="instrumentmode-switch" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

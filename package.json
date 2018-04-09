@@ -25,7 +25,8 @@
   "dependencies": {
     "electron": "1.8.4",
     "electron-reload": "1.2.2",
-    "serialport": "^4.0.7"
+    "serialport": "^4.0.7",
+    "weatherstar-switch": "1.0.7"
   },
   "devDependencies": {
     "electron-rebuild": "1.7.3"

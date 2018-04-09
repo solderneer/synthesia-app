@@ -2,7 +2,7 @@
 
 const SerialPort = require('serialport');
 
-/*
+
 let serialInit = function (baudrate, COMport){
     let port = new SerialPort(COMport, { baudRate: baudrate }, function (err) {
         if (err) {
@@ -11,13 +11,13 @@ let serialInit = function (baudrate, COMport){
     });
 
     return port;
-};*/
+};
 
 let listPorts = function  (){
     SerialPort.list((err, ports) => {
         ports.forEach((port) => {
-            var comport = document.querySelector('#comport');
-            comport.innerHTML = comport.innerHTML + "<option>" + port.comName + "</option>";
+            let COMport = document.querySelector('#comport');
+            COMport.innerHTML = COMport.innerHTML + "<option>" + port.comName + "</option>";
             console.log(port.comName);
             console.log(port.pnpID);
             console.log(port.manufacturer);
@@ -26,7 +26,8 @@ let listPorts = function  (){
 };
 
 module.exports = {
-    listPorts: listPorts
+    listPorts: listPorts,
+    serialInit: serialInit
 };
 
 
