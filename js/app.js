@@ -1,14 +1,20 @@
-"use strict"
+"use strict";
 
 const os = require('os');
-const electron = require('electron')
+const electron = require('electron');
+const SerialPort = require('serialport');
 
 const {remote, ipcRenderer} = electron;
+
+const {listPorts} = require('./js/serialpull');
 
 console.log('The author of this app is Sudharshan'); // Testing
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log(document.querySelector('#hello').innerHTML); // Testing
+
+    // list available serial devices
+    listPorts();
 
     document.querySelector('#connect').onclick = () => {
         //ipcRenderer.sendSync('exit', null);
