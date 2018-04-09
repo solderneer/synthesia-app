@@ -4,7 +4,8 @@
   "description": "An app to control the synthesia fpga project",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "rebuild": "./node_modules/.bin/electron-rebuild",
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,10 @@
   "homepage": "https://github.com/solderneer/synthesia_app#readme",
   "dependencies": {
     "electron": "1.8.4",
-    "electron-reload": "1.2.2"
+    "electron-reload": "1.2.2",
+    "serialport": "6.1.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron-rebuild": "1.7.3"
+  }
 }
