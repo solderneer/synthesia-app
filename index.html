@@ -8,47 +8,89 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/main.css" type="text/css">
+        <link rel="stylesheet" href="css/toggle.css" type="text/css">
         <title>Synthesia</title>
     </head>
     <body>
-        <div class="jumbotron vertical-center">
-            <div class="container-fluid">
-                <div class="card mx-auto">
-                    <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <img src="assets/logo_blk.png" class="img-fluid" alt="Responsive logo"/>
-                        </div>
-                    </div>
+        <!-- Connect Page -->
+        <div id="initial">
+            <div class="jumbotron vertical-center jumbo-color">
+                <div class="container-fluid">
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <img src="assets/logo_blk.png" class="img-fluid" alt="Responsive logo"/>
+                                </div>
+                            </div>
 
-                    <div class="row row-margin justify-content-center">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                        <option selected="selected" disabled>Port</option>
-                                        <option>/dev/ttyMFD1</option>
-                                </select>
+                            <div class="row row-margin justify-content-center">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                                <option selected="selected" disabled>Port</option>
+                                                <option>/dev/ttyMFD1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                                <option selected="selected" disabled>Baudrate</option>
+                                                <option id="hello">9600</option>
+                                                <option>19200</option>
+                                                <option>38200</option>
+                                                <option>57600</option>
+                                                <option>115200</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-margin justify-content-center">
+                                <button type="button" class="btn btn-dark btn-lg btn-block" id="connect">Connect</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                        <option selected="selected" disabled>Baudrate</option>
-                                        <option id="hello">9600</option>
-                                        <option>19200</option>
-                                        <option>38200</option>
-                                        <option>57600</option>
-                                        <option>115200</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-margin justify-content-center">
-                        <button type="button" class="btn btn-dark btn-lg btn-block" id="connect">Connect</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings">
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/logo_blk.png" width="100px" alt="" style="margin-left: 41vw;"/>
+                    <button type="button" class="btn btn-dark" id="disconnect" style="margin-left: 28vw;">Disconnect</button>
+                </a>
+            </nav>
+            <div class="jumbotron jumbo-color" id="connected">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="card-deck">
+                            <div class="card" style="padding: 0px;">
+                                <div class="card-header" style="padding-bottom: 3px">
+                                    <h5>Voice Mode</h5>
+                                    <label class="switch">
+                                        <input type="checkbox" id="pitchen">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                            <div class="card" style="padding: 0px">
+                                <div class="card-header" style="padding-bottom: 3px">
+                                    <h5>Instrument Mode</h5>
+                                    <label class="switch">
+                                        <input type="checkbox" id="insten"/>
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
