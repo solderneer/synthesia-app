@@ -2,7 +2,6 @@
 
 const SerialPort = require('serialport');
 
-
 let serialInit = function (baudrate, COMport){
     let port = new SerialPort(COMport, { baudRate: baudrate }, function (err) {
         if (err) {

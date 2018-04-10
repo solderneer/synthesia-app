@@ -11,8 +11,48 @@ const {listPorts, serialInit} = require('./js/serialpull');
 console.log('The author of this app is Sudharshan'); // Testing
 
 // Create a 1 byte buffer
-let transmitBuffer = new Buffer(1);
-let uint8Transmit = new Uint8Array(transmitBuffer);
+let uint8Transmit = new Uint8Array(1);
+let uint8Filt = new Uint8Array(1);
+let uint8Delta = new Uint8Array(1);
+
+// Toggle callback functions
+let voiceFunc = function() {
+    uint8Transmit[0] = 0b00000000;
+    console.log(uint8Transmit.toString('hex'));
+}
+
+let passFunc = function() {
+    if(this.getChecked()) {
+        uint8Transmit[0] = 0b01000000;
+        console.log(uint8Transmit.toString('hex'));
+    }
+};
+
+let delayFunc = function() {
+    if(this.getChecked()) {
+        uint8Transmit[0] = 0b10000000;
+        console.log(uint8Transmit.toString('hex'));
+    }
+}
+
+let pitchFunc = function() {
+    if(this.getChecked()) {
+        uint8Transmit[0] = 0b10100000;
+        uint8Transmit[0] ^= (uint8Filt << 4);
+        uint8Transmit[0] ^= uint8Delta;
+        console.log(uint8Transmit.toString('hex'));
+    }
+}
+
+let filtFunc = function() {
+    if(this.getChecked()) {
+        uint8Transmit[0] ^= 0b00010000;
+    }
+    else {
+        uint8Transmit[0] &= 0b11101111;
+    }
+    console.log(uint8Transmit.toString('hex'));
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log(document.querySelector('#hello').innerHTML); // Testing
@@ -28,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let pitchSel = document.querySelector('#pitch-switch');
     let filtSel = document.querySelector('#filter-switch');
 
-    let voiceSwitch = new Switch(voiceSel, {size: 'default'});
+    let voiceSwitch = new Switch(voiceSel, {size: 'default', onChange: voiceFunc});
     let instSwitch = new Switch(instSel, {size: 'default'});
-    let passSwitch = new Switch(passSel, {size: 'small', disabled: true});
-    let delaySwitch = new Switch(delaySel, {size: 'small', disabled: true});
-    let pitchSwitch = new Switch(pitchSel, {size: 'small', disabled: true});
-    let filtSwitch = new Switch(filtSel, {size: 'small', disabled: true});
+    let passSwitch = new Switch(passSel, {size: 'small', disabled: true, onChange: passFunc});
+    let delaySwitch = new Switch(delaySel, {size: 'small', disabled: true, onChange: delayFunc});
+    let pitchSwitch = new Switch(pitchSel, {size: 'small', disabled: true, onChange: pitchFunc});
+    let filtSwitch = new Switch(filtSel, {size: 'small', disabled: true, onChange: filtFunc});
 
     let switches = document.querySelectorAll('.switch');
 
@@ -133,8 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     document.querySelector('#disconnect').onclick = () => {
-        document.querySelector('#initial').style.display = 'block';
-        document.querySelector('#settings').style.display = 'none';
+        // Lazy reload by refresh
         location.reload();
     };
 });
