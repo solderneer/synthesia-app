@@ -12,6 +12,8 @@ console.log('The author of this app is Sudharshan'); // Testing
 
 // Create a 1 byte buffer
 let uint8Transmit = new Uint8Array(1);
+
+/*
 let uint8Filt = new Uint8Array(1);
 let uint8Delta = new Uint8Array(1);
 
@@ -53,6 +55,7 @@ let filtFunc = function() {
     }
     console.log(uint8Transmit.toString('hex'));
 }
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log(document.querySelector('#hello').innerHTML); // Testing
@@ -68,12 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let pitchSel = document.querySelector('#pitch-switch');
     let filtSel = document.querySelector('#filter-switch');
 
-    let voiceSwitch = new Switch(voiceSel, {size: 'default', onChange: voiceFunc});
+    let voiceSwitch = new Switch(voiceSel, {size: 'default'});
     let instSwitch = new Switch(instSel, {size: 'default'});
-    let passSwitch = new Switch(passSel, {size: 'small', disabled: true, onChange: passFunc});
-    let delaySwitch = new Switch(delaySel, {size: 'small', disabled: true, onChange: delayFunc});
-    let pitchSwitch = new Switch(pitchSel, {size: 'small', disabled: true, onChange: pitchFunc});
-    let filtSwitch = new Switch(filtSel, {size: 'small', disabled: true, onChange: filtFunc});
+    let passSwitch = new Switch(passSel, {size: 'small', disabled: true});
+    let delaySwitch = new Switch(delaySel, {size: 'small', disabled: true});
+    let pitchSwitch = new Switch(pitchSel, {size: 'small', disabled: true});
+    let filtSwitch = new Switch(filtSel, {size: 'small', disabled: true});
 
     let switches = document.querySelectorAll('.switch');
 
@@ -81,9 +84,94 @@ document.addEventListener('DOMContentLoaded', () => {
     let upPitch = document.querySelector('#upPitch');
     let downPitch = document.querySelector('#downPitch');
     let upOctave = document.querySelector('#upOctave');
-    let downOctave = document.querySelector('#downOctace');
+    let downOctave = document.querySelector('#downOctave');
     let upNote = document.querySelector('#upNote');
     let downNote = document.querySelector('#downNote');
+
+    // Text handles
+    let pitchVal = document.querySelector('#pitch-val');
+    let octaveVal = document.querySelector('#octave-val');
+    let noteVal = document.querySelector('#note-val');
+
+    // Event Handlers for buttons
+    upPitch.addEventListener("click", () => {
+        let currentVal = parseInt(pitchVal.innerText);
+        if(currentVal < 3) {
+            currentVal = currentVal + 1;
+            pitchVal.innerText = currentVal;
+            upPitch.disabled = (currentVal == 3) ? true : false;
+        }
+
+        if(currentVal > -3) {
+            downPitch.disabled = false;
+        }
+    });
+
+    downPitch.addEventListener("click", () => {
+        let currentVal = parseInt(pitchVal.innerText);
+        if(currentVal > -3) {
+            currentVal = currentVal - 1;
+            pitchVal.innerText = currentVal;
+            downPitch.disabled = (currentVal == -3) ? true : false;
+        }
+
+        if(currentVal < 3) {
+            upPitch.disabled = false;
+        }
+    });
+
+    upOctave.addEventListener("click", () => {
+        let currentVal = parseInt(octaveVal.innerText);
+        if(currentVal < 3) {
+            currentVal = currentVal + 1;
+            octaveVal.innerText = currentVal;
+            upOctave.disabled = (currentVal == 3) ? true : false;
+        }
+
+        if(currentVal > -3) {
+            downOctave.disabled = false;
+        }
+    });
+
+    downOctave.addEventListener("click", () => {
+        let currentVal = parseInt(octaveVal.innerText);
+        if(currentVal > -3) {
+            currentVal = currentVal - 1;
+            octaveVal.innerText = currentVal;
+            downOctave.disabled = (currentVal == -3) ? true : false;
+        }
+
+        if(currentVal < 3) {
+            upOctave.disabled = false;
+        }
+    });
+
+    upNote.addEventListener("click", () => {
+        let currentVal = parseInt(noteVal.innerText);
+        if(currentVal < 3) {
+            currentVal = currentVal + 1;
+            noteVal.innerText = currentVal;
+            upNote.disabled = (currentVal == 3) ? true : false;
+        }
+
+        if(currentVal > -3) {
+            downNote.disabled = false;
+        }
+    });
+
+    downNote.addEventListener("click", () => {
+        let currentVal = parseInt(noteVal.innerText);
+        if(currentVal > -3) {
+            currentVal = currentVal - 1;
+            noteVal.innerText = currentVal;
+            downNote.disabled = (currentVal == -3) ? true : false;
+        }
+
+        if(currentVal < 3) {
+            upNote.disabled = false;
+        }
+    });
+
 
     // Connect routine
     document.querySelector('#connect').onclick = () => {
@@ -110,16 +198,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 delaySwitch.enable();
                 pitchSwitch.enable();
                 instSwitch.off();
+
+                upOctave.disabled = true;
+                downOctave.disabled = true;
+                upNote.disabled = true;
+                downNote.disabled = true;
+
+                octaveVal.innerText = 0;
+                noteVal.innerText = 0;
             }
             else {
                 passSwitch.off();
                 delaySwitch.off();
                 pitchSwitch.off();
                 filtSwitch.off();
+
                 passSwitch.disable();
                 delaySwitch.disable();
                 pitchSwitch.disable();
                 filtSwitch.disable();
+                upPitch.disabled = true;
+                downPitch.disabled = true;
+                pitchVal.innerText = 0;
             }
         };
 
@@ -130,6 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 pitchSwitch.off();
                 filtSwitch.off();
                 filtSwitch.disable();
+                upPitch.disabled = true;
+                downPitch.disabled = true;
+                pitchVal.innerText = 0;
             }
         }
 
@@ -140,6 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 pitchSwitch.off();
                 filtSwitch.off();
                 filtSwitch.disable();
+                upPitch.disabled = true;
+                downPitch.disabled = true;
+                pitchVal.innerText = 0;
             }
         }
 
@@ -149,10 +255,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 passSwitch.off();
                 delaySwitch.off();
                 filtSwitch.enable();
+                upPitch.disabled = false;
+                downPitch.disabled = false;
             }
             else {
                 filtSwitch.off();
                 filtSwitch.disable();
+                upPitch.disabled = true;
+                downPitch.disabled = true;
+                pitchVal.innerText = 0;
             }
         }
 
@@ -167,7 +278,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 delaySwitch.disable();
                 pitchSwitch.disable();
                 filtSwitch.disable();
+                upPitch.disabled = true;
+                downPitch.disabled = true;
+                pitchVal.innerText = 0;
                 voiceSwitch.off();
+
+                upOctave.disabled = false;
+                downOctave.disabled = false;
+                upNote.disabled = false;
+                downNote.disabled = false;
+            }
+            else {
+                upOctave.disabled = true;
+                downOctave.disabled = true;
+                upNote.disabled = true;
+                downNote.disabled = true;
+
+                octaveVal.innerText = 0;
+                noteVal.innerText = 0;
+            }
+        };
+
+        // Constructing the serial packet
+        let constructSerial = () => {
+            if(voiceSwitch.getChecked()) {
+                if(passSwitch.getChecked()) {
+                    uint8Transmit[0] = 0b01000000;
+                }
+                else if(delaySwitch.getChecked()) {
+                    uint8Transmit[0] = 0b10000000;
+                }
+                else if(pitchSwitch.getChecked()) {
+                    uint8Transmit[0] = 0b10100000;
+                    uint8Transmit[0] ^= (filtSwitch.getChecked()) << 4;
+
+                    let currentVal = parseInt(pitchVal.innerText);
+                    if(currentVal > 0) {
+                        uint8Transmit[0] ^= (abs(currentVal)) << 2;
+                    }
+                    else if(currentVal < 0) {
+                        uint8Transmit[0] ^= (abs(currentVal));
+                    }
+                    else {
+                        // Do nothing
+                    }
+                }
+                else {
+                    uint8Transmit[0] = 0b00000000;
+                }
+            }
+            else if(instSwitch.getChecked()) {
+
+            }
+            else {
             }
         };
     };
