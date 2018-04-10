@@ -30,12 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let voiceSwitch = new Switch(voiceSel, {size: 'default'});
     let instSwitch = new Switch(instSel, {size: 'default'});
-    let passSwitch = new Switch(passSel, {size: 'small'});
-    let delaySwitch = new Switch(delaySel, {size: 'small'});
-    let pitchSwitch = new Switch(pitchSel, {size: 'small'});
-    let filtSwitch = new Switch(filtSel, {size: 'small'});
+    let passSwitch = new Switch(passSel, {size: 'small', disabled: true});
+    let delaySwitch = new Switch(delaySel, {size: 'small', disabled: true});
+    let pitchSwitch = new Switch(pitchSel, {size: 'small', disabled: true});
+    let filtSwitch = new Switch(filtSel, {size: 'small', disabled: true});
 
     let switches = document.querySelectorAll('.switch');
+
+    // Initialize buttons
+    let upPitch = document.querySelector('#upPitch');
+    let downPitch = document.querySelector('#downPitch');
+    let upOctave = document.querySelector('#upOctave');
+    let downOctave = document.querySelector('#downOctace');
+    let upNote = document.querySelector('#upNote');
+    let downNote = document.querySelector('#downNote');
 
     // Connect routine
     document.querySelector('#connect').onclick = () => {
@@ -57,23 +65,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // When Voice Mode is selected
         switches[0].onclick = () => {
-            // Enable voice mode features
-            passSwitch.enable();
-            delaySwitch.enable();
-            pitchSwitch.enable();
-
-            // Disable instrument mode features
-            instSwitch.off();
+            if(voiceSwitch.getChecked()) {
+                passSwitch.enable();
+                delaySwitch.enable();
+                pitchSwitch.enable();
+                instSwitch.off();
+            }
+            else {
+                passSwitch.off();
+                delaySwitch.off();
+                pitchSwitch.off();
+                filtSwitch.off();
+                passSwitch.disable();
+                delaySwitch.disable();
+                pitchSwitch.disable();
+                filtSwitch.disable();
+            }
         };
 
-        // When Instrument Mode is selected
-        switches[4].onclick = () => {
-            // Disable voice mode features
-            voiceSwitch.off();
-            passSwitch.disable();
-            delaySwitch.disable();
-            pitchSwitch.disable();
+        // When passthrough mode is selected
+        switches[1].onclick = () => {
+            if(passSwitch.getChecked()) {
+                delaySwitch.off();
+                pitchSwitch.off();
+                filtSwitch.off();
+                filtSwitch.disable();
+            }
+        }
 
+        // When delay mode is selected
+        switches[2].onclick = () => {
+            if(delaySwitch.getChecked()) {
+                passSwitch.off();
+                pitchSwitch.off();
+                filtSwitch.off();
+                filtSwitch.disable();
+            }
+        }
+
+        // When pitch mode is selected
+        switches[3].onclick = () => {
+            if(pitchSwitch.getChecked()) {
+                passSwitch.off();
+                delaySwitch.off();
+                filtSwitch.enable();
+            }
+            else {
+                filtSwitch.off();
+                filtSwitch.disable();
+            }
+        }
+
+        // When Instrument Mode is selected
+        switches[5].onclick = () => {
+            if(instSwitch.getChecked()) {
+                passSwitch.off();
+                delaySwitch.off();
+                pitchSwitch.off();
+                filtSwitch.off();
+                passSwitch.disable();
+                delaySwitch.disable();
+                pitchSwitch.disable();
+                filtSwitch.disable();
+                voiceSwitch.off();
+            }
         };
     };
 

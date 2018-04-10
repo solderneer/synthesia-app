@@ -53,3 +53,20 @@
     height: 30px;
     padding: 0px;
 }
+
+.rightalign {
+    display: inline;
+    float: right;
+    margin-right: -5px;
+}
+
+.centeralign {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.rightbutton {
+    position: relative;
+    left: 185px;
+    bottom: 33px;
+}

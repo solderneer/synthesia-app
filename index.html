@@ -64,7 +64,7 @@
                     <button type="button" class="btn btn-dark" id="disconnect" style="margin-left: 28vw;">Disconnect</button>
                 </a>
             </nav>
-            <div class="jumbotron jumbo-color" id="connected">
+            <div class="jumbotron jumbo-color vertical-center" id="connected" style="min-height: 85.3vh";>
                 <div class="container-fluid">
                     <div class="row justify-content-center">
                         <div class="card-deck">
@@ -94,17 +94,19 @@
                                         </div>
                                     </div>
                                      <div>
-                                        <span class="suboption">Filter enable</span>
+                                        <span class="suboption">Filter Enable</span>
                                         <div class="left-switch" style="bottom: 48px">
                                             <input type="checkbox" id="filter-switch" />
                                         </div>
                                     </div>
-                                    <div>
-                                        <span>Pitch shift:</span><br>
-                                        <div>
-                                            <button type="button" class="btn btn-outline-dark square">+</button>
-                                            <span>0</span>
-                                            <button type="button" class="btn btn-outline-dark square">-</button>
+                                    <div style="margin-top: -35px">
+                                        <span>Pitch Shift</span>
+                                        <div class="rightalign">
+                                            <button type="button" class="btn btn-outline-dark square" id="upPitch"
+                                                disabled>-</button>
+                                            <span class="centeralign">0</span>
+                                            <button type="button" class="btn btn-outline-dark square" id="downPitch"
+                                                disabled>+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,6 +116,28 @@
                                     <h5>Instrument Mode</h5>
                                     <div class="header-switch">
                                         <input type="checkbox" id="instrumentmode-switch" />
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <h6>Octave Select</h6>
+                                        <div class="rightbutton">
+                                            <button type="button" class="btn btn-outline-dark square" id="upOctave"
+                                                disabled>-</button>
+                                            <span class="centeralign">0</span>
+                                            <button type="button" class="btn btn-outline-dark square" id="downOctave"
+                                                disabled>+</button>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: -15px;">
+                                        <h6>Note Select</h6>
+                                        <div class="rightbutton">
+                                            <button type="button" class="btn btn-outline-dark square" id="upNote"
+                                                disabled>-</button>
+                                            <span class="centeralign">0</span>
+                                            <button type="button" class="btn btn-outline-dark square" id="downNote"
+                                                disabled>+</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

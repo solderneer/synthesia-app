@@ -19,8 +19,6 @@ let listPorts = function  (){
             let COMport = document.querySelector('#comport');
             COMport.innerHTML = COMport.innerHTML + "<option>" + port.comName + "</option>";
             console.log(port.comName);
-            console.log(port.pnpID);
-            console.log(port.manufacturer);
         });
     });
 };
