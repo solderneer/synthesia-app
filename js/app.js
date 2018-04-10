@@ -148,26 +148,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     upNote.addEventListener("click", () => {
         let currentVal = parseInt(noteVal.innerText);
-        if(currentVal < 3) {
+        if(currentVal < 7) {
             currentVal = currentVal + 1;
             noteVal.innerText = currentVal;
-            upNote.disabled = (currentVal == 3) ? true : false;
+            upNote.disabled = (currentVal == 7) ? true : false;
         }
 
-        if(currentVal > -3) {
+        if(currentVal > 0) {
             downNote.disabled = false;
         }
     });
 
     downNote.addEventListener("click", () => {
         let currentVal = parseInt(noteVal.innerText);
-        if(currentVal > -3) {
+        if(currentVal > 0) {
             currentVal = currentVal - 1;
             noteVal.innerText = currentVal;
-            downNote.disabled = (currentVal == -3) ? true : false;
+            downNote.disabled = (currentVal == 0) ? true : false;
         }
 
-        if(currentVal < 3) {
+        if(currentVal < 7) {
             upNote.disabled = false;
         }
     });
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Constructing the serial packet
+        // Function constructing the serial packet
         let constructSerial = () => {
             if(voiceSwitch.getChecked()) {
                 if(passSwitch.getChecked()) {
@@ -313,11 +313,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     uint8Transmit[0] ^= (filtSwitch.getChecked()) << 4;
 
                     let currentVal = parseInt(pitchVal.innerText);
+
                     if(currentVal > 0) {
-                        uint8Transmit[0] ^= (abs(currentVal)) << 2;
+                        uint8Transmit[0] ^= (Math.abs(currentVal)) << 2;
                     }
                     else if(currentVal < 0) {
-                        uint8Transmit[0] ^= (abs(currentVal));
+                        uint8Transmit[0] ^= (4-Math.abs(currentVal));
                     }
                     else {
                         // Do nothing
@@ -328,11 +329,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             else if(instSwitch.getChecked()) {
+                let octVal = parseInt(octaveVal.innerText);
+                let notVal = parseInt(noteVal.innerText);
 
+                uint8Transmit[0] = 0b11000000;
+                uint8Transmit[0] ^= ((octVal >= 0) << 5);
+                uint8Transmit[0] ^= (Math.abs(octVal) << 3);
+                uint8Transmit[0] ^= notVal;
             }
             else {
+                uint8Transmit[0] = 0b00000000;
             }
+
+            console.log(uint8Transmit.toString('hex'));
         };
+
+        // Intervaled output
+        let delayTransmit = setInterval(constructSerial, 1000);
     };
 
     document.querySelector('#disconnect').onclick = () => {
