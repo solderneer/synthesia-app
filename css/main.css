@@ -42,3 +42,14 @@
     left: 250px;
     bottom: 32px;
 }
+
+.suboption {
+    position: relative;
+    bottom: 20px;
+}
+
+.square {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+}

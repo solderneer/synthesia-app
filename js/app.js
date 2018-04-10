@@ -25,11 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let instSel = document.querySelector('#instrumentmode-switch');
     let passSel = document.querySelector('#passthrough-switch');
     let delaySel = document.querySelector('#delay-switch');
+    let pitchSel = document.querySelector('#pitch-switch');
+    let filtSel = document.querySelector('#filter-switch');
 
     let voiceSwitch = new Switch(voiceSel, {size: 'default'});
     let instSwitch = new Switch(instSel, {size: 'default'});
     let passSwitch = new Switch(passSel, {size: 'small'});
     let delaySwitch = new Switch(delaySel, {size: 'small'});
+    let pitchSwitch = new Switch(pitchSel, {size: 'small'});
+    let filtSwitch = new Switch(filtSel, {size: 'small'});
 
     let switches = document.querySelectorAll('.switch');
 
@@ -56,17 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Enable voice mode features
             passSwitch.enable();
             delaySwitch.enable();
+            pitchSwitch.enable();
 
             // Disable instrument mode features
             instSwitch.off();
         };
 
         // When Instrument Mode is selected
-        switches[3].onclick = () => {
+        switches[4].onclick = () => {
             // Disable voice mode features
             voiceSwitch.off();
             passSwitch.disable();
             delaySwitch.disable();
+            pitchSwitch.disable();
 
         };
     };
