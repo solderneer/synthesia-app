@@ -341,7 +341,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 uint8Transmit[0] = 0b00000000;
             }
 
-            console.log(uint8Transmit.toString('hex'));
+            // console.log(uint8Transmit.toString('hex'));
+            serialport.write(uint8Transmit, 'binary');
         };
 
         // Intervaled output
