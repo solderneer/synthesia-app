@@ -310,15 +310,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 else if(pitchSwitch.getChecked()) {
                     uint8Transmit[0] = 0b10100000;
-                    uint8Transmit[0] ^= (filtSwitch.getChecked()) << 4;
+                    uint8Transmit[0] |= (filtSwitch.getChecked()) << 4;
 
                     let currentVal = parseInt(pitchVal.innerText);
 
                     if(currentVal > 0) {
-                        uint8Transmit[0] ^= (Math.abs(currentVal)) << 2;
+                        uint8Transmit[0] |= (Math.abs(currentVal)) << 2;
                     }
                     else if(currentVal < 0) {
-                        uint8Transmit[0] ^= (4-Math.abs(currentVal));
+                        uint8Transmit[0] |= (4-Math.abs(currentVal));
                     }
                     else {
                         // Do nothing
@@ -333,9 +333,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 let notVal = parseInt(noteVal.innerText);
 
                 uint8Transmit[0] = 0b11000000;
-                uint8Transmit[0] ^= ((octVal >= 0) << 5);
-                uint8Transmit[0] ^= (Math.abs(octVal) << 3);
-                uint8Transmit[0] ^= notVal;
+                uint8Transmit[0] |= ((octVal >= 0) << 5);
+                uint8Transmit[0] |= (Math.abs(octVal) << 3);
+                uint8Transmit[0] |= notVal;
             }
             else {
                 uint8Transmit[0] = 0b00000000;
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Intervaled output
-        let delayTransmit = setInterval(constructSerial, 1000);
+        let delayTransmit = setInterval(constructSerial, 500);
     };
 
     document.querySelector('#disconnect').onclick = () => {

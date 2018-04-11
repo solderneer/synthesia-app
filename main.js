@@ -9,7 +9,7 @@ const {app, BrowserWindow, ipcMain} = electron;
 let MainWindow;
 
 // Enable autoreloading
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
 // Wait for app to be ready
 app.on('ready', () => {

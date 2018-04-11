@@ -23,14 +23,13 @@
     "productName": "Synthesia",
     "dmg": {
         "format": "ULFO",
-        "icon": "./assets/icon.icns"
+        "icon": "./build-assets/icon.icns"
     },
     "directories": {
-        "buildResources": "assets",
+        "buildResources": "build-assets",
         "output": "release"
     }
-    
-  }, 
+  },
   "author": "Sudharshan",
   "license": "MIT",
   "bugs": {
