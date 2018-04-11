@@ -22,12 +22,12 @@
     "appId": "com.github.synthesiapp}",
     "productName": "Synthesia",
     "dmg": {
-        "format": "ULFO",
-        "icon": "./build-assets/icon.icns"
+      "format": "ULFO",
+      "icon": "./build-assets/icon.icns"
     },
     "directories": {
-        "buildResources": "build-assets",
-        "output": "release"
+      "buildResources": "build-assets",
+      "output": "release"
     }
   },
   "author": "Sudharshan",
